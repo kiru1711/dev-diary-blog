@@ -2,107 +2,122 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kirthika's Dev Diary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kirthika’s Dev Diary ✨</title>
   <style>
-    :root {
-      --bg: #fdfdfd;
-      --primary: #111;
-      --accent: #6c63ff;
-      --text: #333;
-      --light-gray: #e0e0e0;
-    }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Inter", "Segoe UI", sans-serif;
     }
 
     body {
-      background-color: var(--bg);
-      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
       line-height: 1.6;
       padding: 2rem;
     }
 
     header {
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       text-align: center;
-      padding-bottom: 2rem;
-      border-bottom: 2px solid var(--light-gray);
+      margin-bottom: 2rem;
     }
 
     header h1 {
-      font-size: 2.5rem;
-      color: var(--primary);
+      font-size: 2.2rem;
+      color: #2c3e50;
     }
 
     header p {
-      color: #666;
-      font-size: 1.1rem;
-      margin-top: 0.5rem;
+      color: #7f8c8d;
+      font-style: italic;
     }
 
     .section {
-      max-width: 750px;
-      margin: 3rem auto;
-      padding: 2rem;
-      background: #fff;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
-      border-radius: 12px;
+      background-color: #fff;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
     }
 
     .section h2 {
-      color: var(--primary);
       margin-bottom: 1rem;
+      color: #374151;
     }
 
-    .section p {
-      font-size: 1rem;
-      color: var(--text);
+    ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
     }
 
     footer {
       text-align: center;
-      margin-top: 4rem;
+      margin-top: 3rem;
+      color: #999;
       font-size: 0.9rem;
-      color: #aaa;
     }
 
     a {
-      color: var(--accent);
+      color: #4a90e2;
       text-decoration: none;
     }
 
     a:hover {
       text-decoration: underline;
     }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      .section {
+        padding: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Kirthika's Dev Diary</h1>
-    <p>Documenting my developer journey — one commit at a time 💻✨</p>
+    <h1>Kirthika’s Dev Diary 🪄</h1>
+    <p>Code. Learn. Reflect. Repeat.</p>
   </header>
 
-  <section class="section">
-    <h2>📌 Weekly Log - Week 1</h2>
-    <p>
-      This week, I set up the project, explored GitHub Pages, and started my blog journey.
-      It’s been fun learning how everything connects! More updates coming soon.
-    </p>
-  </section>
+  <div class="section">
+    <h2>🌱 Weekly Logs</h2>
+    <ul>
+      <li><strong>Week 1:</strong> Set up GitHub, VS Code, and started LeetCode journey.</li>
+      <li><strong>Week 2:</strong> Built the Dev Diary blog, customized index.html layout.</li>
+      <li><strong>Week 3:</strong> Started JS crash course + explored GitHub Pages deployment.</li>
+    </ul>
+  </div>
 
-  <section class="section">
-    <h2>🚀 Current Goal</h2>
-    <p>
-      Finish my front-end portfolio site, solve 10 more LeetCode problems, and write a mini reflection post on my progress.
-    </p>
-  </section>
+  <div class="section">
+    <h2>💻 LeetCode Progress</h2>
+    <ul>
+      <li><strong>1920:</strong> Build Array from Permutation – ✅ First try!</li>
+      <li><strong>1480:</strong> Running Sum of 1d Array – ✅ Solved with prefix sum trick.</li>
+      <li><strong>1431:</strong> Kids With the Greatest Number of Candies – ✅ Easy logic win.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🛠️ Upcoming Features</h2>
+    <ul>
+      <li>Blog post editor with Markdown</li>
+      <li>Dark mode toggle 🌙</li>
+      <li>Progress heatmap (like GitHub's contribution graph)</li>
+    </ul>
+  </div>
 
   <footer>
-    &copy; 2025 Kirthika R. | <a href="https://github.com/kiru1711">GitHub</a>
+    Made with 💻 + ☕ by Kirthika • <a href="https://github.com/kiru1711" target="_blank">GitHub</a>
   </footer>
 </body>
 </html>
