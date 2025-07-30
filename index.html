@@ -1,61 +1,108 @@
-<!-- dev diary blog coming soon 😎 -->
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kiruthika's Dev Diary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kirthika's Dev Diary</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
+    :root {
+      --bg: #fdfdfd;
+      --primary: #111;
+      --accent: #6c63ff;
+      --text: #333;
+      --light-gray: #e0e0e0;
+    }
+
+    * {
       margin: 0;
       padding: 0;
-      background: #f9f9f9;
-      color: #333;
+      box-sizing: border-box;
+      font-family: "Inter", "Segoe UI", sans-serif;
     }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
     header {
-      background: #222;
-      color: #fff;
-      padding: 2rem;
       text-align: center;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid var(--light-gray);
     }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--primary);
+    }
+
+    header p {
+      color: #666;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+
     .section {
+      max-width: 750px;
+      margin: 3rem auto;
       padding: 2rem;
-      border-bottom: 1px solid #ddd;
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+      border-radius: 12px;
     }
-    h2 {
-      color: #444;
+
+    .section h2 {
+      color: var(--primary);
+      margin-bottom: 1rem;
     }
+
+    .section p {
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
     a {
-      color: #007acc;
+      color: var(--accent);
       text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Hey, I’m Kiruthika 👋</h1>
-    <p>Welcome to my developer journey blog!</p>
+    <h1>Kirthika's Dev Diary</h1>
+    <p>Documenting my developer journey — one commit at a time 💻✨</p>
   </header>
 
-  <div class="section" id="weekly-logs">
-    <h2>🗓 Weekly Logs</h2>
-    <p>Coming soon... reflections from my coding weeks!</p>
-  </div>
+  <section class="section">
+    <h2>📌 Weekly Log - Week 1</h2>
+    <p>
+      This week, I set up the project, explored GitHub Pages, and started my blog journey.
+      It’s been fun learning how everything connects! More updates coming soon.
+    </p>
+  </section>
 
-  <div class="section" id="leetcode-progress">
-    <h2>⚔ LeetCode Progress</h2>
-    <p>I’ve started my LeetCode streak on July 1, 2025. Stay tuned!</p>
-  </div>
+  <section class="section">
+    <h2>🚀 Current Goal</h2>
+    <p>
+      Finish my front-end portfolio site, solve 10 more LeetCode problems, and write a mini reflection post on my progress.
+    </p>
+  </section>
 
-  <div class="section" id="mini-projects">
-    <h2>💻 Mini Projects</h2>
-    <p>Showcasing cool mini-projects like AI Redaction Tool & Lost and Found System.</p>
-  </div>
-
-  <div class="section" id="contact">
-    <h2>📬 Contact</h2>
-    <p>Find me on <a href="https://github.com/kiru1711" target="_blank">GitHub</a></p>
-  </div>
+  <footer>
+    &copy; 2025 Kirthika R. | <a href="https://github.com/kiru1711">GitHub</a>
+  </footer>
 </body>
 </html>
