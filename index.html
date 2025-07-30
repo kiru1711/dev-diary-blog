@@ -3,73 +3,119 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kirthika’s Dev Diary ✨</title>
+  <title>Kiruthika’s Dev Diary 💻</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --accent: #7f5af0;
+      --bg: #f0f4f8;
+      --text: #2e2e2e;
+      --light: #ffffff;
+    }
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f4f9;
-      color: #333;
-      line-height: 1.6;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(145deg, #f7f9fc, #e5ecf3);
+      color: var(--text);
       padding: 2rem;
+      position: relative;
+      overflow-x: hidden;
     }
 
     header {
-      background-color: #ffffff;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
     }
 
     header h1 {
-      font-size: 2.2rem;
-      color: #2c3e50;
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
     }
 
     header p {
-      color: #7f8c8d;
       font-style: italic;
+      color: #555;
     }
 
     .section {
-      background-color: #fff;
+      background-color: var(--light);
+      border-radius: 12px;
       padding: 1.5rem 2rem;
       margin-bottom: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+      position: relative;
+      z-index: 2;
     }
 
     .section h2 {
+      color: var(--accent);
       margin-bottom: 1rem;
-      color: #374151;
+      font-size: 1.4rem;
     }
 
     ul {
-      list-style-type: disc;
       margin-left: 1.5rem;
     }
 
-    footer {
-      text-align: center;
-      margin-top: 3rem;
-      color: #999;
-      font-size: 0.9rem;
+    ul li {
+      margin-bottom: 0.7rem;
+    }
+
+    .card {
+      background-color: #fafafa;
+      border-left: 6px solid var(--accent);
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      margin-top: 1rem;
     }
 
     a {
-      color: #4a90e2;
+      color: var(--accent);
       text-decoration: none;
     }
 
     a:hover {
       text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 3rem;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* Shapes / blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.25;
+      z-index: 0;
+    }
+
+    .blob1 {
+      width: 220px;
+      height: 220px;
+      background: var(--accent);
+      top: -60px;
+      left: -60px;
+    }
+
+    .blob2 {
+      width: 180px;
+      height: 180px;
+      background: #e26ee5;
+      bottom: -50px;
+      right: -40px;
     }
 
     @media (max-width: 768px) {
@@ -80,12 +126,20 @@
       .section {
         padding: 1rem;
       }
+
+      header h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
+
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+
   <header>
-    <h1>Kirthika’s Dev Diary 🪄</h1>
+    <h1>Kiruthika’s Dev Diary 🌼</h1>
     <p>Code. Learn. Reflect. Repeat.</p>
   </header>
 
@@ -93,8 +147,8 @@
     <h2>🌱 Weekly Logs</h2>
     <ul>
       <li><strong>Week 1:</strong> Set up GitHub, VS Code, and started LeetCode journey.</li>
-      <li><strong>Week 2:</strong> Built the Dev Diary blog, customized index.html layout.</li>
-      <li><strong>Week 3:</strong> Started JS crash course + explored GitHub Pages deployment.</li>
+      <li><strong>Week 2:</strong> Built Dev Diary blog, added custom styling.</li>
+      <li><strong>Week 3:</strong> Java OOP practice + HTML polishing + mini project kicked off.</li>
     </ul>
   </div>
 
@@ -102,22 +156,32 @@
     <h2>💻 LeetCode Progress</h2>
     <ul>
       <li><strong>1920:</strong> Build Array from Permutation – ✅ First try!</li>
-      <li><strong>1480:</strong> Running Sum of 1d Array – ✅ Solved with prefix sum trick.</li>
-      <li><strong>1431:</strong> Kids With the Greatest Number of Candies – ✅ Easy logic win.</li>
+      <li><strong>1480:</strong> Running Sum of 1d Array – ✅ Used prefix sum trick.</li>
+      <li><strong>1431:</strong> Kids With the Greatest Number of Candies – ✅ Easy-peasy.</li>
     </ul>
   </div>
 
   <div class="section">
-    <h2>🛠️ Upcoming Features</h2>
+    <h2>🧠 Mini Project: AI Redactor</h2>
+    <p class="card">
+      <strong>Project Title:</strong> Adaptive AI Document Redaction for Privacy Protection <br><br>
+      A smart system that uses machine learning to detect and redact sensitive information (like names, addresses, IDs) in documents automatically. It balances **data utility** with **privacy**—perfect for legal, academic, and government docs. <br><br>
+      <strong>Status:</strong> Phase 1 complete (data collection + basic redaction).<br>
+      <strong>Next up:</strong> Model fine-tuning and front-end integration.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>🔮 What’s Coming Next?</h2>
     <ul>
-      <li>Blog post editor with Markdown</li>
-      <li>Dark mode toggle 🌙</li>
-      <li>Progress heatmap (like GitHub's contribution graph)</li>
+      <li>Blog editor with Markdown</li>
+      <li>Dark mode toggle (obviously 🌙)</li>
+      <li>GitHub activity heatmap</li>
     </ul>
   </div>
 
   <footer>
-    Made with 💻 + ☕ by Kirthika • <a href="https://github.com/kiru1711" target="_blank">GitHub</a>
+    Built with ☕, 🎧 and late-night debugging • <a href="https://github.com/kiru1711" target="_blank">GitHub</a>
   </footer>
 </body>
 </html>
