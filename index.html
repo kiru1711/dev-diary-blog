@@ -138,14 +138,11 @@
          → Building a personal Dev Diary Blog (hosted with GitHub Pages)<br>
          → Rebuilding my LeetCode streak with daily challenges</p>
     </div>
-    <div class="card">
-  <h2>📊 LeetCode Progress</h2>
-  <p>Auto‑updated stats from my LeetCode journey:</p>
-  <img
-    src="https://leetcard.jacoblin.cool/kiru1171?theme=light&font=baloo&animation=true"
-    alt="LeetCode Stats"
-    style="width:100%; max-width:600px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
-/>
+    <div class="card hover:shadow-xl transition duration-300 ease-in-out">
+  <h2 class="text-xl font-semibold mb-2">📊 LeetCode Progress</h2>
+  <div id="leetcode-stats" class="text-sm text-gray-700">
+    <p>Loading...</p>
+  </div>
 </div>
 
     <div class="card">
@@ -156,5 +153,26 @@
 
   </div>
   <div class="footer-blob"></div>
+  <script>
+  async function loadLCStats() {
+    try {
+      const res = await fetch("https://leetcode-stats-api.herokuapp.com/kiru1171");
+      if (!res.ok) throw new Error("API is down");
+      const data = await res.json();
+      document.getElementById("leetcode-stats").innerHTML = `
+        <ul class="space-y-1">
+          <li>✅ <strong>Total Solved:</strong> ${data.totalSolved}</li>
+          <li>🟢 Easy: ${data.easySolved} | 🟡 Medium: ${data.mediumSolved} | 🔴 Hard: ${data.hardSolved}</li>
+          <li>🏆 Rank: #${data.ranking}</li>
+        </ul>
+      `;
+    } catch (err) {
+      document.getElementById("leetcode-stats").innerHTML = "<p>Unable to fetch stats 😓</p>";
+    }
+  }
+
+  loadLCStats();
+</script>
+
 </body>
 </html>

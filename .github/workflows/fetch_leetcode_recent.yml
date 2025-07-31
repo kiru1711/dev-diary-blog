@@ -24,10 +24,11 @@ jobs:
       - name: Run scraper
         run: python fetch_recent.py
 
-      - name: Commit and push
-        run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          git add leetcode.json
-          git commit -m "update: LeetCode recent problems"
-          git push
+      - name: Commit and push changes
+  run: |
+    git config --global user.name 'kiru1711'
+    git config --global user.email 'kiru@example.com'
+    git add .
+    git commit -m "update: LeetCode recent problems"
+    git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/kiru1711/dev-diary-blog.git main
+
