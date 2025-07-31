@@ -2,8 +2,8 @@ name: Update LeetCode Recent Problems
 
 on:
   schedule:
-    - cron: "0 */6 * * *" # runs every 6 hours
-  workflow_dispatch: # allows manual trigger
+    - cron: "0 */6 * * *" # every 6 hours
+  workflow_dispatch: # manual trigger option
 
 jobs:
   update-leetcode-recent:
@@ -28,6 +28,6 @@ jobs:
         run: |
           git config --global user.name 'kiru1711'
           git config --global user.email 'kiru@example.com'
-          git add .
-          git commit -m "update: LeetCode recent problems"
+          git add leetcode.json
+          git commit -m "update: LeetCode recent problems" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/kiru1711/dev-diary-blog.git main

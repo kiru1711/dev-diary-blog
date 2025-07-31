@@ -2,8 +2,7 @@ import requests
 import json
 from email.utils import formatdate
 
-# ✅ Correct username
-username = "kiru1711"
+username = "kiru1171"
 url = "https://leetcode.com/graphql"
 
 headers = {
@@ -28,17 +27,10 @@ query = {
 }
 
 response = requests.post(url, json=query, headers=headers)
-json_response = response.json()
+submissions = response.json()["data"]["recentAcSubmissionList"][:3]
 
-# ✅ Check if data is returned
-if "data" in json_response and "recentAcSubmissionList" in json_response["data"]:
-    submissions = json_response["data"]["recentAcSubmissionList"][:3]
+for sub in submissions:
+    sub["date"] = formatdate(int(sub["timestamp"]))
 
-    for sub in submissions:
-        sub["date"] = formatdate(int(sub["timestamp"]))
-
-    with open("leetcode.json", "w") as f:
-        json.dump(submissions, f, indent=2)
-    print("✅ LeetCode data successfully written to leetcode.json")
-else:
-    print("❌ Error: No submission data found in API response.")
+with open("leetcode.json", "w") as f:
+    json.dump(submissions, f, indent=2)
