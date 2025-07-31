@@ -30,4 +30,4 @@ jobs:
           git config --global user.email 'kiru@example.com'
           git add .
           git commit -m "update: LeetCode recent problems"
-          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/kiru1711/dev-diary-blog.git main
+          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/kiru1711/dev-diary-blog.git main
