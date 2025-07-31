@@ -138,12 +138,21 @@
          → Building a personal Dev Diary Blog (hosted with GitHub Pages)<br>
          → Rebuilding my LeetCode streak with daily challenges</p>
     </div>
+
     <div class="card hover:shadow-xl transition duration-300 ease-in-out">
-  <h2 class="text-xl font-semibold mb-2">📊 LeetCode Progress</h2>
-  <div id="leetcode-stats" class="text-sm text-gray-700">
-    <p>Loading...</p>
-  </div>
-</div>
+      <h2 class="text-xl font-semibold mb-2">📊 LeetCode Progress</h2>
+      <div id="leetcode-stats" class="text-sm text-gray-700">
+        <p>Loading...</p>
+      </div>
+    </div>
+
+    <!-- New card for recent LeetCode solved problems -->
+    <div class="card">
+      <h2>🕒 Recent LeetCode Problems Solved</h2>
+      <div id="leetcode-recent">
+        Loading recent problems...
+      </div>
+    </div>
 
     <div class="card">
       <h2>📬 Contact</h2>
@@ -153,26 +162,50 @@
 
   </div>
   <div class="footer-blob"></div>
-  <script>
-  async function loadLCStats() {
-    try {
-      const res = await fetch("https://leetcode-stats-api.herokuapp.com/kiru1171");
-      if (!res.ok) throw new Error("API is down");
-      const data = await res.json();
-      document.getElementById("leetcode-stats").innerHTML = `
-        <ul class="space-y-1">
-          <li>✅ <strong>Total Solved:</strong> ${data.totalSolved}</li>
-          <li>🟢 Easy: ${data.easySolved} | 🟡 Medium: ${data.mediumSolved} | 🔴 Hard: ${data.hardSolved}</li>
-          <li>🏆 Rank: #${data.ranking}</li>
-        </ul>
-      `;
-    } catch (err) {
-      document.getElementById("leetcode-stats").innerHTML = "<p>Unable to fetch stats 😓</p>";
-    }
-  }
 
-  loadLCStats();
-</script>
+  <script>
+    async function loadLCStats() {
+      try {
+        const res = await fetch("https://leetcode-stats-api.herokuapp.com/kiru1171");
+        if (!res.ok) throw new Error("API is down");
+        const data = await res.json();
+        document.getElementById("leetcode-stats").innerHTML = `
+          <ul class="space-y-1">
+            <li>✅ <strong>Total Solved:</strong> ${data.totalSolved}</li>
+            <li>🟢 Easy: ${data.easySolved} | 🟡 Medium: ${data.mediumSolved} | 🔴 Hard: ${data.hardSolved}</li>
+            <li>🏆 Rank: #${data.ranking}</li>
+          </ul>
+        `;
+      } catch (err) {
+        document.getElementById("leetcode-stats").innerHTML = "<p>Unable to fetch stats 😓</p>";
+      }
+    }
+
+    loadLCStats();
+
+    async function loadRecentLeetCode() {
+      try {
+        const res = await fetch('leetcode.json');
+        if (!res.ok) throw new Error('Failed to load leetcode.json');
+        const data = await res.json();
+
+        const container = document.getElementById('leetcode-recent');
+        container.innerHTML = ''; // clear loading text
+
+        data.forEach(submission => {
+          const div = document.createElement('div');
+          div.style.marginBottom = '10px';
+          div.innerHTML = `<strong>${submission.title}</strong> — solved on <em>${new Date(submission.date).toLocaleDateString()}</em>`;
+          container.appendChild(div);
+        });
+      } catch (err) {
+        document.getElementById('leetcode-recent').innerHTML = '<p>Unable to load recent problems 😓</p>';
+        console.error(err);
+      }
+    }
+
+    loadRecentLeetCode();
+  </script>
 
 </body>
 </html>
