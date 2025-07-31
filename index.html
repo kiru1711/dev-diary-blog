@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kiruthika's Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <style>
     body {
       margin: 0;
@@ -153,6 +155,12 @@
         Loading recent problems...
       </div>
     </div>
+    <!-- 📊 Dashboard: Weekly LeetCode + GitHub Activity -->
+<div class="card">
+  <h2>📈 Weekly Progress Dashboard</h2>
+  <canvas id="weekly-leetcode-chart" height="100"></canvas>
+</div>
+
 
     <div class="card">
       <h2>📬 Contact</h2>
@@ -205,6 +213,67 @@
     }
 
     loadRecentLeetCode();
+        async function loadWeeklyChart() {
+      try {
+        const res = await fetch('leetcode.json');
+        if (!res.ok) throw new Error('Could not load leetcode.json');
+        const data = await res.json();
+
+        // Convert submission dates to week-wise counts
+        const weekMap = new Map();
+
+        data.forEach(item => {
+          const date = new Date(item.date);
+          const weekStart = new Date(date);
+          weekStart.setDate(date.getDate() - date.getDay()); // Sunday
+          const key = weekStart.toISOString().split('T')[0];
+
+          weekMap.set(key, (weekMap.get(key) || 0) + 1);
+        });
+
+        // Sort weeks by date
+        const sortedWeeks = Array.from(weekMap.entries()).sort((a, b) => new Date(a[0]) - new Date(b[0]));
+
+        const weekLabels = sortedWeeks.map(w => w[0]);
+        const weekCounts = sortedWeeks.map(w => w[1]);
+
+        const ctx = document.getElementById('weekly-leetcode-chart').getContext('2d');
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: weekLabels,
+            datasets: [{
+              label: 'LeetCode Problems Solved',
+              data: weekCounts,
+              backgroundColor: '#d6a4ff',
+              borderRadius: 5,
+              barThickness: 30
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
+          }
+        });
+      } catch (err) {
+        console.error('Error loading chart:', err);
+      }
+    }
+
+    loadWeeklyChart();
+
   </script>
 
 </body>
