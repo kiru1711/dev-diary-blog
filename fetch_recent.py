@@ -1,5 +1,6 @@
 import requests
 import json
+from email.utils import formatdate  
 
 username = "kiru1171"
 url = "https://leetcode.com/graphql"
@@ -29,7 +30,7 @@ response = requests.post(url, json=query, headers=headers)
 submissions = response.json()["data"]["recentAcSubmissionList"][:3]
 
 for sub in submissions:
-    sub["date"] = requests.utils.formatdate(int(sub["timestamp"]))
+    sub["date"] = formatdate(int(sub["timestamp"])) 
 
 with open("leetcode.json", "w") as f:
     json.dump(submissions, f, indent=2)
