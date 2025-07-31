@@ -12,10 +12,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Generate leetcode.json
-        uses: zaydek/leetcode-json@v1
+      - name: Fetch LeetCode data
+        uses: shilangyu/leetcode-stats-box@v1
         with:
-          username: kiru1171  # your updated LeetCode username
+          username: kiru1171
+          readme_path: "leetcode.json"
 
       - name: Commit & push changes
         run: |
