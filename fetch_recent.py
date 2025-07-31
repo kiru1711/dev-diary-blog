@@ -1,6 +1,6 @@
 import requests
 import json
-from email.utils import formatdate
+from datetime import datetime
 
 username = "kiru1171"
 url = "https://leetcode.com/graphql"
@@ -27,10 +27,19 @@ query = {
 }
 
 response = requests.post(url, json=query, headers=headers)
-submissions = response.json()["data"]["recentAcSubmissionList"][:3]
+submissions = response.json()["data"]["recentAcSubmissionList"]
+
+# Group by date
+datewise = {}
 
 for sub in submissions:
-    sub["date"] = formatdate(int(sub["timestamp"]))
+    # Convert timestamp to YYYY-MM-DD (UTC)
+    date = datetime.utcfromtimestamp(int(sub["timestamp"])).strftime("%Y-%m-%d")
+    if date not in datewise:
+        datewise[date] = []
+    if sub["title"] not in datewise[date]:  # prevent duplicates
+        datewise[date].append(sub["title"])
 
+# Save grouped submissions
 with open("leetcode.json", "w") as f:
-    json.dump(submissions, f, indent=2)
+    json.dump(datewise, f, indent=2)
