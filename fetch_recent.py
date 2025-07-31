@@ -1,45 +1,57 @@
 import requests
 import json
+import time
 from datetime import datetime
 
+# Replace with your actual LeetCode username
 username = "kiru1171"
-url = "https://leetcode.com/graphql"
 
-headers = {
-    "Content-Type": "application/json",
-    "Referer": f"https://leetcode.com/{username}/",
-    "User-Agent": "Mozilla/5.0"
-}
-
-query = {
-    "operationName": "recentAcSubmissions",
-    "variables": {
-        "username": username
-    },
-    "query": """
-    query recentAcSubmissions($username: String!) {
-      recentAcSubmissionList(username: $username) {
-        title
-        timestamp
+query = """
+query userProblemsSolved($username: String!) {
+  matchedUser(username: $username) {
+    submitStats {
+      acSubmissionNum {
+        difficulty
+        count
+        submissions
       }
     }
-    """
+    recentACSubmissions {
+      id
+      title
+      timestamp
+    }
+  }
 }
+"""
 
-response = requests.post(url, json=query, headers=headers)
-submissions = response.json()["data"]["recentAcSubmissionList"]
+variables = {"username": username}
+url = "https://leetcode.com/graphql"
 
-# Group by date
-datewise = {}
+response = requests.post(url, json={"query": query, "variables": variables})
 
-for sub in submissions:
-    # Convert timestamp to YYYY-MM-DD (UTC)
-    date = datetime.utcfromtimestamp(int(sub["timestamp"])).strftime("%Y-%m-%d")
-    if date not in datewise:
-        datewise[date] = []
-    if sub["title"] not in datewise[date]:  # prevent duplicates
-        datewise[date].append(sub["title"])
+if response.status_code != 200:
+    raise Exception("Query failed to run with status code {}".format(response.status_code))
 
-# Save grouped submissions
+data = response.json()
+recent = data["data"]["matchedUser"]["recentACSubmissions"]
+
+# Create a dictionary grouped by date
+problems_by_date = {}
+
+for item in recent:
+    ts = int(item["timestamp"])
+    date_str = datetime.utcfromtimestamp(ts).strftime("%Y-%m-%d")
+    title = item["title"]
+
+    if date_str not in problems_by_date:
+        problems_by_date[date_str] = []
+
+    if title not in problems_by_date[date_str]:
+        problems_by_date[date_str].append(title)
+
+# Write to leetcode.json
 with open("leetcode.json", "w") as f:
-    json.dump(datewise, f, indent=2)
+    json.dump(problems_by_date, f, indent=2)
+
+print("✅ leetcode.json updated successfully!")

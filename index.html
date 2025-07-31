@@ -171,110 +171,118 @@
   </div>
   <div class="footer-blob"></div>
 
-  <script>
-    async function loadLCStats() {
-      try {
-        const res = await fetch("https://leetcode-stats-api.herokuapp.com/kiru1171");
-        if (!res.ok) throw new Error("API is down");
-        const data = await res.json();
-        document.getElementById("leetcode-stats").innerHTML = `
-          <ul class="space-y-1">
-            <li>✅ <strong>Total Solved:</strong> ${data.totalSolved}</li>
-            <li>🟢 Easy: ${data.easySolved} | 🟡 Medium: ${data.mediumSolved} | 🔴 Hard: ${data.hardSolved}</li>
-            <li>🏆 Rank: #${data.ranking}</li>
-          </ul>
-        `;
-      } catch (err) {
-        document.getElementById("leetcode-stats").innerHTML = "<p>Unable to fetch stats 😓</p>";
-      }
+
+<script>
+  async function loadLCStats() {
+    try {
+      const res = await fetch("https://leetcode-stats-api.herokuapp.com/kiru1171");
+      if (!res.ok) throw new Error("API is down");
+      const data = await res.json();
+      document.getElementById("leetcode-stats").innerHTML = `
+        <ul class="space-y-1">
+          <li>✅ <strong>Total Solved:</strong> ${data.totalSolved}</li>
+          <li>🟢 Easy: ${data.easySolved} | 🟡 Medium: ${data.mediumSolved} | 🔴 Hard: ${data.hardSolved}</li>
+          <li>🏆 Rank: #${data.ranking}</li>
+        </ul>
+      `;
+    } catch (err) {
+      document.getElementById("leetcode-stats").innerHTML = "<p>Unable to fetch stats 😓</p>";
     }
+  }
 
-    loadLCStats();
+  async function loadRecentLeetCode() {
+    try {
+      const res = await fetch('leetcode.json');
+      const data = await res.json();
 
-    async function loadRecentLeetCode() {
-      try {
-        const res = await fetch('leetcode.json');
-        if (!res.ok) throw new Error('Failed to load leetcode.json');
-        const data = await res.json();
+      const today = new Date();
+      const recentDates = [];
 
-        const container = document.getElementById('leetcode-recent');
-        container.innerHTML = ''; // clear loading text
-
-        data.forEach(submission => {
-          const div = document.createElement('div');
-          div.style.marginBottom = '10px';
-          div.innerHTML = `<strong>${submission.title}</strong> — solved on <em>${new Date(submission.date).toLocaleDateString()}</em>`;
-          container.appendChild(div);
-        });
-      } catch (err) {
-        document.getElementById('leetcode-recent').innerHTML = '<p>Unable to load recent problems 😓</p>';
-        console.error(err);
+      for (let i = 0; i < 3; i++) {
+        const d = new Date(today);
+        d.setDate(today.getDate() - i);
+        const key = d.toISOString().slice(0, 10);
+        recentDates.push(key);
       }
+
+      const recentProblems = [];
+      recentDates.forEach(date => {
+        if (data[date]) {
+          data[date].forEach(title => {
+            recentProblems.push({ title, date });
+          });
+        }
+      });
+
+      const listEl = document.getElementById('leetcode-recent');
+      listEl.innerHTML = "";
+      if (recentProblems.length === 0) {
+        listEl.innerHTML = "<p>No recent problems found.</p>";
+        return;
+      }
+
+      const ul = document.createElement('ul');
+      recentProblems.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.title} (${item.date})`;
+        ul.appendChild(li);
+      });
+      listEl.appendChild(ul);
+    } catch (err) {
+      console.error("Error loading recent problems:", err);
     }
+  }
 
-    loadRecentLeetCode();
-        async function loadWeeklyChart() {
-      try {
-        const res = await fetch('leetcode.json');
-        if (!res.ok) throw new Error('Could not load leetcode.json');
-        const data = await res.json();
+  async function loadWeeklyChart() {
+    try {
+      const res = await fetch('leetcode.json');
+      const data = await res.json();
 
-        // Convert submission dates to week-wise counts
-        const weekMap = new Map();
+      const today = new Date();
+      const last7Days = [];
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date(today);
+        d.setDate(today.getDate() - i);
+        const key = d.toISOString().slice(0, 10);
+        last7Days.push(key);
+      }
 
-        data.forEach(item => {
-          const date = new Date(item.date);
-          const weekStart = new Date(date);
-          weekStart.setDate(date.getDate() - date.getDay()); // Sunday
-          const key = weekStart.toISOString().split('T')[0];
+      const dailyCounts = last7Days.map(date => ({
+        date,
+        count: data[date] ? data[date].length : 0
+      }));
 
-          weekMap.set(key, (weekMap.get(key) || 0) + 1);
-        });
-
-        // Sort weeks by date
-        const sortedWeeks = Array.from(weekMap.entries()).sort((a, b) => new Date(a[0]) - new Date(b[0]));
-
-        const weekLabels = sortedWeeks.map(w => w[0]);
-        const weekCounts = sortedWeeks.map(w => w[1]);
-
-        const ctx = document.getElementById('weekly-leetcode-chart').getContext('2d');
-        new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: weekLabels,
-            datasets: [{
-              label: 'LeetCode Problems Solved',
-              data: weekCounts,
-              backgroundColor: '#d6a4ff',
-              borderRadius: 5,
-              barThickness: 30
-            }]
-          },
-          options: {
-            responsive: true,
-            scales: {
-              y: {
-                beginAtZero: true,
-                ticks: {
-                  stepSize: 1
-                }
-              }
-            },
-            plugins: {
-              legend: {
-                display: false
-              }
+      const ctx = document.getElementById('weekly-leetcode-chart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: dailyCounts.map(item => item.date),
+          datasets: [{
+            label: 'Problems Solved',
+            data: dailyCounts.map(item => item.count),
+            backgroundColor: '#38bdf8'
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              precision: 0
             }
           }
-        });
-      } catch (err) {
-        console.error('Error loading chart:', err);
-      }
+        }
+      });
+    } catch (err) {
+      console.error("Error loading chart:", err);
     }
+  }
 
-    loadWeeklyChart();
+  loadLCStats();
+  loadRecentLeetCode();
+  loadWeeklyChart();
+</script>
 
-  </script>
 
 </body>
 </html>
