@@ -1,26 +1,14 @@
 import requests
 import json
-import time
 from datetime import datetime
 
-# Replace with your actual LeetCode username
 username = "kiru1171"
 
 query = """
-query userProblemsSolved($username: String!) {
-  matchedUser(username: $username) {
-    submitStats {
-      acSubmissionNum {
-        difficulty
-        count
-        submissions
-      }
-    }
-    recentACSubmissions {
-      id
-      title
-      timestamp
-    }
+query recentAcSubmissions($username: String!) {
+  recentAcSubmissionList(username: $username, limit: 20) {
+    title
+    timestamp
   }
 }
 """
@@ -28,15 +16,19 @@ query userProblemsSolved($username: String!) {
 variables = {"username": username}
 url = "https://leetcode.com/graphql"
 
-response = requests.post(url, json={"query": query, "variables": variables})
+response = requests.post(
+    url,
+    json={"query": query, "variables": variables},
+    headers={"Content-Type": "application/json"}
+)
 
 if response.status_code != 200:
     raise Exception("Query failed to run with status code {}".format(response.status_code))
 
 data = response.json()
-recent = data["data"]["matchedUser"]["recentACSubmissions"]
+recent = data["data"]["recentAcSubmissionList"]
 
-# Create a dictionary grouped by date
+# Group by date
 problems_by_date = {}
 
 for item in recent:
