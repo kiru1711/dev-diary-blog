@@ -8,6 +8,32 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
+    .emoji-toggle-btn {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: 2px solid #9b59b6;
+      color: #9b59b6;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 0.5px 0.5px #9b59b6;
+    }
+
+    .emoji-toggle-btn:hover {
+      background: rgba(155, 89, 182, 0.1);
+      box-shadow: 0 0 6px 2px rgba(155, 89, 182, 0.5);
+      transform: scale(1.05);
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -15,6 +41,15 @@
       background: linear-gradient(to bottom right, #fef6ff, #e8f7f2);
       color: #333;
       overflow-x: hidden;
+      transition: background 0.3s ease, color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .dark {
+      background: linear-gradient(to bottom right, #1a112a, #0d0c1d);
+      color: #f0f0f0;
     }
 
     .header-circle {
@@ -41,7 +76,6 @@
 
     .container {
       max-width: 950px;
-      margin: 0 auto;
       padding: 100px 20px 60px;
     }
 
@@ -52,6 +86,10 @@
       text-align: center;
     }
 
+    .dark h1 {
+      color: #e0d7f5;
+    }
+
     .card {
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(12px);
@@ -59,7 +97,7 @@
       box-shadow: 0 8px 24px rgba(180, 140, 210, 0.2);
       padding: 30px 40px;
       margin-bottom: 35px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
       border-left: 6px solid #d6a4ff;
     }
 
@@ -68,10 +106,20 @@
       box-shadow: 0 12px 28px rgba(180, 140, 210, 0.35);
     }
 
+    .dark .card {
+      background: rgba(26, 17, 42, 0.9);
+      color: #e0d7f5;
+      border-left: 6px solid #9b59b6;
+    }
+
     .card h2 {
       font-size: 1.6rem;
       color: #9050a1;
       margin-bottom: 12px;
+    }
+
+    .dark .card h2 {
+      color: #dcb0ff;
     }
 
     .card p {
@@ -80,18 +128,35 @@
       color: #444;
     }
 
+    .dark .card p {
+      color: #ddd;
+    }
+
     a {
       color: #9050a1;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.3s ease;
     }
 
     a:hover {
       text-decoration: underline;
     }
 
+    .dark a {
+      color: #dcb0ff;
+    }
+
+    .dark a:hover {
+      color: #f0caff;
+    }
+
     strong {
       color: #000;
+    }
+
+    .dark strong {
+      color: #f8e1ff;
     }
 
     @media screen and (max-width: 768px) {
@@ -102,12 +167,45 @@
         font-size: 2rem;
       }
     }
+
+    .share-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .chic-btn {
+      background: linear-gradient(135deg, #e0bbff 0%, #c3a1ff 100%);
+      border: none;
+      color: #2c004d;
+      padding: 0.6rem 1.4rem;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: 2rem;
+      box-shadow: 0 4px 12px rgba(160, 82, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .chic-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(195, 161, 255, 0.4);
+      background: linear-gradient(135deg, #d6a4ff 0%, #fbc2eb 100%);
+      color: #3b0066;
+    }
   </style>
 </head>
 <body>
-  <div class="header-circle"></div>
-  <div class="container">
-    <h1>👩‍💻 Kiruthika’s Dev Portfolio</h1>
+
+<button id="darkModeToggle" class="emoji-toggle-btn">
+  <span id="emoji">🌙</span> <span id="mode-text">Dark Mode</span>
+</button>
+
+<div class="header-circle"></div>
+<div class="container">
+  <h1>👩‍💻 Kiruthika’s Dev Portfolio</h1>
 
     <div class="card">
       <h2>Mini Project: AI Redactor</h2>
@@ -170,6 +268,66 @@
 
   </div>
   <div class="footer-blob"></div>
+
+<section id="share" style="margin-top: 3rem; text-align: center;">
+  <h2 style="font-size: 1.8rem; margin-bottom: 0.5rem;">📣 Share this Blog</h2>
+  <p style="color: #666;">Let your friends know what I'm building!</p>
+
+  <div class="share-buttons">
+    <a href="https://wa.me/?text=Check%20out%20this%20Dev%20Diary%20Blog%20by%20Kiruthika%20👉%20https://kiru1711.github.io/dev-diary-blog/" target="_blank">
+      <button class="chic-btn">WhatsApp</button>
+    </a>
+    <a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20cool%20Dev%20Diary%20Blog%20by%20Kiruthika%20👉%20https://kiru1711.github.io/dev-diary-blog/" target="_blank">
+      <button class="chic-btn">X / Twitter</button>
+    </a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://kiru1711.github.io/dev-diary-blog/" target="_blank">
+      <button class="chic-btn">LinkedIn</button>
+    </a>
+    <button class="chic-btn" onclick="copyLink()">Copy Link 📋</button>
+  </div>
+
+  <p id="copy-msg" style="color: #22c55e; margin-top: 1rem;"></p>
+</section>
+
+<div class="footer-blob"></div>
+
+<script>
+  const toggleBtn = document.getElementById('darkModeToggle');
+  const emojiSpan = document.getElementById('emoji');
+  const modeText = document.getElementById('mode-text');
+  const body = document.body;
+
+  function setTheme(theme) {
+    if (theme === 'dark') {
+      body.classList.add('dark');
+      emojiSpan.textContent = '🌞';
+      modeText.textContent = 'Light Mode';
+    } else {
+      body.classList.remove('dark');
+      emojiSpan.textContent = '🌙';
+      modeText.textContent = 'Dark Mode';
+    }
+    localStorage.setItem('theme', theme);
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const currentTheme = body.classList.contains('dark') ? 'dark' : 'light';
+    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  });
+
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  setTheme(savedTheme);
+
+  function copyLink() {
+    const link = 'https://kiru1711.github.io/dev-diary-blog/';
+    navigator.clipboard.writeText(link).then(() => {
+      document.getElementById("copy-msg").textContent = "Link copied to clipboard!";
+      setTimeout(() => {
+        document.getElementById("copy-msg").textContent = "";
+      }, 3000);
+    });
+  }
+</script>
 
 
 <script>
@@ -282,7 +440,32 @@
   loadRecentLeetCode();
   loadWeeklyChart();
 </script>
+<script>
+  function copyLink() {
+    const link = 'https://kiru1711.github.io/dev-diary-blog/';
+    navigator.clipboard.writeText(link).then(() => {
+      document.getElementById("copy-msg").textContent = "Link copied to clipboard!";
+      setTimeout(() => {
+        document.getElementById("copy-msg").textContent = "";
+      }, 3000);
+    });
+  }
+</script>
+
+
+<script>
+  function copyLink() {
+    const link = 'https://kiru1711.github.io/dev-diary-blog/';
+    navigator.clipboard.writeText(link).then(() => {
+      document.getElementById("copy-msg").textContent = "Link copied to clipboard!";
+      setTimeout(() => {
+        document.getElementById("copy-msg").textContent = "";
+      }, 3000);
+    });
+  }
+</script>
 
 
 </body>
 </html>
+
