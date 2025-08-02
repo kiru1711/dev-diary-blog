@@ -244,6 +244,39 @@ section {
     font-size: 1.3rem;
   }
 }
+@media (max-width: 768px) {
+  body {
+    align-items: stretch; /* Let the content fill screen */
+  }
+
+  .container {
+    margin: 0 auto;
+    padding: 60px 20px 40px;
+    width: 100%;
+  }
+
+  .card {
+    margin: 1rem 0;
+    width: 100%;
+  }
+
+  .header-circle,
+  .footer-blob {
+    display: none; /* Hide big background circles on mobile */
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  padding: 1.5rem 1rem;
+}
+
+h1, h2 {
+  word-break: break-word;
+  text-align: center;
+}
 
   </style>
 </head>
