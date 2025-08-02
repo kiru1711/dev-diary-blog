@@ -1,4 +1,7 @@
 {
+  "2025-08-02": [
+    "Two Sum"
+  ],
   "2025-08-01": [
     "Find Numbers with Even Number of Digits"
   ],
@@ -41,8 +44,5 @@
   ],
   "2025-07-20": [
     "Two Sum"
-  ],
-  "2025-07-19": [
-    "Symmetric Tree"
   ]
 }
