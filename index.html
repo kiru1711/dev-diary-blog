@@ -271,10 +271,45 @@
     background: linear-gradient(135deg, #d6a4ff 0%, #fbc2eb 100%);
     color: #3b0066;
   }
+  .skills-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.skills-list li {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+.learning-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.learning-list li {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+
 
   html {
     scroll-behavior: smooth;
   }
+  .no-style-link {
+  color: inherit;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.no-style-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
 </style>
 </head>
 <body>
@@ -296,14 +331,26 @@
     </div>
 
     <div class="card">
-      <h2>🌱 Current Learning Journey</h2>
-      <p>Deep diving into <strong>Java</strong>, sharpening <strong>Full Stack Development</strong> skills. LeetCode streak is currently on pause but coming back stronger 😤.</p>
-    </div>
+  <h2> Current Learning Journey</h2>
+  <ul class="learning-list">
+    <li>📌 Strengthening Java fundamentals — currently focused on <strong>Arrays</strong> and <strong>Strings</strong>.</li>
+    <li>📌 Consistently practicing data structures & algorithms on <strong>LeetCode</strong>.</li>
+    <li>📌 Building an AI-powered <strong>Document Redaction Tool</strong> for privacy protection.</li>
+    <li>📌 Actively working on this portfolio as a <strong>Full Stack Project</strong>.</li>
+  </ul>
+</div>
+
 
     <div class="card">
-      <h2>💡 Skills</h2>
-      <p>Java, Python, C, UI/UX, SQL (basics)</p>
-    </div>
+  <h2>💡 Skills</h2>
+  <ul class="skills-list">
+    <li><strong>Languages:</strong> Java, C, Python, JavaScript (Basics)</li>
+    <li><strong>Web Technologies:</strong> HTML, CSS, UI/UX Principles</li>
+    <li><strong>Tools & Concepts:</strong> GitHub, Figma, SQL (Basics)</li>
+    <li><strong>Soft Skills:</strong> Problem Solving, Communication, Team Collaboration, Creativity</li>
+  </ul>
+</div>
+
 
     <div class="card">
       <h2>📘 Weekly Logs & Progress</h2>
@@ -342,7 +389,9 @@
 
     <div class="card">
       <h2>📬 Contact</h2>
-      <p><strong>Email:</strong> kiruthika.1171@gmail.com<br>
+      <p><strong>Phone:</strong> <a href="tel:+919790415097">+91 9790415097</a></p>
+<p><strong>Email:</strong> <a href="mailto:kiruthika.1171@gmail.com" class="no-style-link">kiruthika.1171@gmail.com</a></p>
+          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/kiruthika1171/" target="_blank">kiruthika1171</a></p>
          <strong>GitHub:</strong> <a href="https://github.com/kiru1711" target="_blank">kiru1711</a></p>
     </div>
 
