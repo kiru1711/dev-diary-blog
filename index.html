@@ -16,9 +16,23 @@
 </head>
 <body>
 
-<button id="darkModeToggle" class="emoji-toggle-btn">
-  <span id="emoji">🌙</span> <span id="mode-text">Dark Mode</span>
-</button>
+
+
+
+<div class="top-bar">
+  <div class="left-buttons">
+<button onclick="location.href='stats.html'" class="your-styling-class">LeetCode Stats</button>
+  </div>
+
+  <div class="right-buttons">
+    <button id="darkModeToggle" class="emoji-toggle-btn">
+      <span id="emoji">🌙</span> 
+      <span id="mode-text">Dark Mode</span>
+    </button>
+  </div>
+</div>
+
+
 
 <div class="header-circle"></div>
 <div class="container">
@@ -67,28 +81,6 @@
          → Building a personal Dev Diary Blog (hosted with GitHub Pages)<br>
          → Rebuilding my LeetCode streak with daily challenges</p>
     </div>
-
-    <div class="card hover:shadow-xl transition duration-300 ease-in-out">
-      <h2 class="text-xl font-semibold mb-2">📊 LeetCode Progress</h2>
-      <div id="leetcode-stats" class="text-sm text-gray-700">
-        <p>Loading...</p>
-      </div>
-    </div>
-
-    <!-- New card for recent LeetCode solved problems -->
-    <div class="card">
-      <h2>🕒 Recent LeetCode Problems Solved</h2>
-      <div id="leetcode-recent">
-        Loading recent problems...
-      </div>
-    </div>
-    <!-- 📊 Dashboard: Weekly LeetCode + GitHub Activity -->
-<div class="card">
-  <h2>📈 Weekly Progress Dashboard</h2>
-  <canvas id="weekly-leetcode-chart" height="100"></canvas>
-</div>
-
-
     <div class="card">
       <h2>📬 Contact</h2>
       <p><strong>Phone:</strong> <a href="tel:+919790415097">+91 9790415097</a></p>

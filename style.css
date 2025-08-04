@@ -298,4 +298,79 @@
   color: inherit;
 }
 
+/* TOP BAR */
+.top-bar {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  background-color: transparent;
+  position: relative;
+  z-index: 10;
+}
+
+.left-buttons,
+.right-buttons {
+  display: flex;
+  align-items: center;
+}
+
+/* STATS BUTTON - TOP LEFT */
+.stats-btn {
+  border: 2px solid #9333ea;
+  background-color: transparent;
+  color: #9333ea;
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  line-height: 1.2;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.stats-btn:hover {
+  box-shadow: 0 0 12px 2px #9333ea;
+  transform: scale(1.05);
+  background-color: transparent;
+  color: #9333ea;
+  transition: all 0.3s ease-in-out;
+}
+
+/* DARK MODE TOGGLE - TOP RIGHT */
+.emoji-toggle-btn {
+  border: 2px solid #9333ea;
+  background-color: transparent;
+  color: #9333ea;
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  line-height: 1.2;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.emoji-toggle-btn:hover {
+  box-shadow: 0 0 12px 2px #9333ea;
+  transform: scale(1.05);
+  background-color: transparent;
+  color: #9333ea;
+}
+
 

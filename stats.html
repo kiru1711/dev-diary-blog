@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LeetCode Stats</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background: linear-gradient(to right, #f2eaff, #edf2f7);
+    }
+    .card {
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: 3rem auto;
+    }
+    .dark .card {
+      background-color: #1f2937;
+      box-shadow: 0 20px 30px rgba(255,255,255,0.05);
+    }
+    .stat-label {
+      font-weight: bold;
+    }
+    .stat-icon {
+      margin-right: 6px;
+    }
+    .chart-wrapper {
+      margin-top: 2rem;
+    }
+    ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-gray-800 dark:bg-gray-900 dark:text-white transition-all duration-300">
+
+  <header class="flex justify-between items-center p-4">
+    <h1 class="text-3xl font-bold text-purple-700 dark:text-purple-400 mx-auto">Dev Diary</h1>
+    <button id="darkModeToggle" class="absolute right-6 top-4 px-3 py-1 border rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+      <span id="emoji">🌙</span> <span id="mode-text">Dark Mode</span>
+    </button>
+  </header>
+
+  <main class="card">
+
+    <section>
+      <h2 class="text-2xl font-bold text-center mb-6">📊 LeetCode Stats</h2>
+      <ul class="space-y-2 text-lg">
+        <li>✅ <span class="stat-label">Total Solved:</span> <span id="totalSolved">Loading...</span></li>
+        <li>🟢 Easy: <span id="easySolved">-</span> | 🟡 Medium: <span id="mediumSolved">-</span> | 🔴 Hard: <span id="hardSolved">-</span></li>
+        <li>🏆 <span class="stat-label">Rank:</span> <span id="ranking">-</span></li>
+      </ul>
+    </section>
+
+
+    <section class="mt-10">
+      <h2 class="text-xl font-semibold mb-4">🕒 Recent Problems (Last 3 Days)</h2>
+      <div id="leetcode-recent" class="text-base space-y-2">
+        <p>Loading recent problems...</p>
+      </div>
+    </section>
+
+    <section class="chart-wrapper">
+      <h2 class="text-xl font-semibold mb-4">📅 Weekly Progress</h2>
+      <canvas id="weekly-leetcode-chart" class="bg-white dark:bg-gray-800 rounded p-4 shadow w-full"></canvas>
+    </section>
+
+  </main>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
