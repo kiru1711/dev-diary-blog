@@ -117,6 +117,8 @@ const res = await fetch('https://raw.githubusercontent.com/kiru1711/dev-diary-bl
     }));
 
     const ctx = document.getElementById('weekly-leetcode-chart').getContext('2d');
+    document.getElementById('weekly-leetcode-chart').style.display = 'block';
+
     new Chart(ctx, {
       type: 'bar',
       data: {
