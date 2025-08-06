@@ -6,37 +6,81 @@
   <title>LeetCode Stats</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+  /* Force dark mode button to match homepage */
+  #darkModeToggle.emoji-toggle-btn {
+    position: fixed !important;
+    right: 1.5rem !important;
+    top: 1.5rem !important;
+    z-index: 1000 !important;
+    /* Keep original styles */
+    border: 2px solid #9b59b6 !important;
+    background: transparent !important;
+    color: #9b59b6 !important;
+    padding: 0.5rem 1rem !important;
+  }
+  /* Prevent header overlap */
+  header {
+    padding-top: 3rem !important;
+  }
+</style>
+<style>
+  /* DARK MODE OVERRIDES ONLY (won't affect light mode) */
+  body.dark .info-card {
+    background: #1e1e1e;
+    border-color: #9b59b6;
+  }
+
+  body.dark .info-card h2 {
+    color: #d6a4ff;
+  }
+
+  body.dark .info-card li {
+    color: #f0f0f0;
+  }
+
+  body.dark .stat-value {
+    color: #9b59b6;
+  }
+</style>
 
 </head>
 <body class="min-h-screen text-gray-800 dark:bg-gray-900 dark:text-white transition-all duration-300">
 
-  <header class="flex justify-between items-center p-4">
-    <h1 class="text-3xl font-bold text-purple-700 dark:text-purple-400 mx-auto">Leetcode Profile</h1>
-    <button id="darkModeToggle" class="emoji-toggle-btn ">
-      <span id="emoji">🌙</span> <span id="mode-text">Dark Mode</span>
-    </button>
-  </header>
+<header>
+  <h1 class="leetcode-title">Leetcode Profile</h1>
+  <button id="darkModeToggle" class="emoji-toggle-btn">
+    <span id="emoji">🌙</span>
+    <span id="mode-text">Dark Mode</span>
+  </button>
+</header>
 
 <main >
 
+  
   <section class="info-card">
-    <h2 class="text-2xl font-bold text-center mb-6">📊Stats</h2>
-    <ul class="space-y-2 text-lg">
-      <li>✅ <span class="stat-label">Total Solved:</span> <span id="totalSolved">Loading...</span></li>
-      <li>🟢 Easy: <span id="easySolved">-</span> | 🟡 Medium: <span id="mediumSolved">-</span> | 🔴 Hard: <span id="hardSolved">-</span></li>
-      <li>🏆 <span class="stat-label">Rank:</span> <span id="ranking">-</span></li>
-    </ul>
-  </section>
+  <h2>📊 Stats</h2>  <!-- Now centered -->
+  <ul>
+    <li>✅ <span class="stat-label">Solved:</span> <span id="totalSolved">Loading...</span></li>
+<li>🟢 <span class="stat-label">Easy:</span> <span id="easySolved">Loading...</span></li>
+      <li>🟡 <span class="stat-label">Medium:</span> <span id="mediumSolved">Loading...</span>
+    </li>
+      <li>🔴 <span class="stat-label">Hard:</span> <span id="hardSolved">Loading...</span>
+    </li>
+      <li>🏆 <span class="stat-label">Rank:</span> <span id="ranking">Loading...</span>
+    </li>
+  </ul>
+</section>
 
   <section class="info-card">
-    <h2 class="text-xl font-semibold mb-4">🕒 Recent Problems (Last 3 Days)</h2>
+    <h2 >🕒 Recent Problems (Last 3 Days)</h2>
     <div id="leetcode-recent" class="text-base space-y-2">
       <p>Loading recent problems...</p>
     </div>
   </section>
 
   <section class="chart-card">
-    <h2 class="text-xl font-semibold mb-4">📅 Weekly Progress</h2>
+    <h2 >📅 Weekly Progress</h2>
 <canvas id="weekly-leetcode-chart" style="display: none; aspect-ratio: 2 / 1; width: 100%; max-width: 600px;"></canvas>
   </section>
 

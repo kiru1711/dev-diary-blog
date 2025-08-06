@@ -1,7 +1,27 @@
+/* Header Styles */
+header {
+  position: relative;
+  padding-top: 4rem; /* Space for fixed button */
+  text-align: center;
+}
+
+.leetcode-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #6d27ae;
+}
+
+.dark .leetcode-title {
+  color: #9b59b6;
+}
+
+/* Force button positioning - will override any conflicts */
+
 .emoji-toggle-btn {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+ right: 1.5rem !important;
+  top: 1.5rem !important;
+  z-index: 1000 !important;
   background: transparent;
   border: 2px solid #9b59b6;
   color: #9b59b6;
@@ -531,3 +551,136 @@ canvas {
   margin: 0.3rem 0; /* Reduced from default 1rem */
   line-height: 1.3; /* Tighter line spacing */
 }
+header {
+  z-index: 900; /* Lower than button's z-index */
+  padding-top: 3rem; /* Space for fixed button */
+}
+/* Compact Stats Card */
+.info-card ul {
+  padding-left: 0;          /* Remove default list indent */
+  margin: 0.5rem 0;         /* Reduce vertical space */
+  list-style: none;         /* Remove bullets */
+}
+
+.info-card li {
+  margin-bottom: 0.3rem;    /* Tight line spacing */
+  line-height: 1.3;
+  display: flex;            /* Better emoji/text alignment */
+  align-items: center;
+}
+
+.stat-label {
+  font-weight: bold;
+  margin-right: 0.3rem;     /* Tighten label spacing */
+}
+
+/* Make emojis more compact */
+.info-card li::before {
+  content: "";
+  margin-right: 0.3rem;
+}
+
+/* Reduce header space */
+.info-card h2 {
+  margin-bottom: 0.5rem !important; 
+  font-size: 1.4rem !important;
+}
+/* Auto-sizing cards */
+.info-card, .chart-card {
+  height: auto !important;    /* Override any fixed heights */
+  min-height: 0 !important;  /* Prevent minimum height creep */
+  padding: 1.5rem;           /* Consistent padding */
+}
+
+/* Content-specific spacing */
+.info-card ul, .info-card ol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;               /* Tight line spacing */
+  margin: 0;
+  padding: 0.5;
+}
+
+.info-card li {
+  margin: 0;
+  line-height: 1.7;          /* Dense but readable */
+}
+/* Center ALL card content */
+.info-card, .chart-card {
+  text-align: center !important;
+}
+
+/* Center headings */
+.info-card h2, .chart-card h2 {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
+/* Center lists */
+.info-card ul {
+  display: inline-block !important;
+  text-align: left; /* Keeps list items aligned */
+  padding-left: 0;
+}
+
+/* Center chart container */
+.chart-container {
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* ===== Card Border Styles ===== */
+.info-card, 
+.chart-card {
+  /* Base Border (Option A) */
+  border: 2px solid #d6a4ff;
+  border-radius: 12px; /* (Option B) */
+  
+  /* Gradient Border (Option C - commented out by default) */
+  
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  background-image: linear-gradient(white, white), 
+                  linear-gradient(to right, #d6a4ff, #9b59b6);
+  background-origin: border-box;
+  
+  
+  /* Shadow reset */
+  box-shadow: 0 0 0 transparent;
+}
+
+/* Dark Mode */
+.dark .info-card,
+.dark .chart-card {
+  border-color: #9b59b6;
+  /* For gradient border: */
+  /*
+  background-image: linear-gradient(#1f1f1f, #1f1f1f),
+                  linear-gradient(to right, #9b59b6, #6d27ae);
+  */
+}
+
+/* Hover Effects */
+.info-card:hover,
+.chart-card:hover {
+  /* Solid border hover */
+  border-color: #6d27ae;
+  
+  /* OR dashed border hover (uncomment to use) */
+  /* border: 2px dashed #6d27ae; */
+  
+  box-shadow: 0 0 12px rgba(109, 39, 174, 0.2);
+}
+
+/* ===== Alternate Styles (Uncomment to Use) ===== */
+/* 
+/* A. Dashed Border */
+/* .info-card, .chart-card {
+  border: 1px dashed #d6a4ff;
+} */
+
+/* B. 3D Groove Border */
+.info-card, .chart-card {
+  border: 3px groove #d6a4ff;
+} 
