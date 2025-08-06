@@ -25,13 +25,9 @@ const savedTheme = localStorage.getItem('theme') || 'light';
 setTheme(savedTheme);
 
 function copyLink() {
-  const link = 'https://kiru1711.github.io/dev-diary-blog/';
-  navigator.clipboard.writeText(link).then(() => {
-    document.getElementById("copy-msg").textContent = "Link copied to clipboard!";
-    setTimeout(() => {
-      document.getElementById("copy-msg").textContent = "";
-    }, 3000);
-  });
+  navigator.clipboard.writeText("https://kiru1711.github.io/dev-diary-blog/");
+  document.getElementById("copy-msg").textContent = "Link copied!";
+  setTimeout(() => document.getElementById("copy-msg").textContent = "", 2000);
 }
 
 async function loadLCStats() {
