@@ -1,4 +1,7 @@
 {
+  "2025-08-07": [
+    "Sort Array By Parity"
+  ],
   "2025-08-04": [
     "Sqrt(x)"
   ],
@@ -42,7 +45,6 @@
   "2025-07-22": [
     "How Many Numbers Are Smaller Than the Current Number",
     "Shuffle the Array",
-    "Defanging an IP Address",
-    "Find Center of Star Graph"
+    "Defanging an IP Address"
   ]
 }
