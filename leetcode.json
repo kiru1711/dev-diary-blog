@@ -1,4 +1,7 @@
 {
+  "2025-08-09": [
+    "Ugly Number"
+  ],
   "2025-08-08": [
     "Fibonacci Number",
     "Perfect Number"
@@ -45,8 +48,5 @@
   ],
   "2025-07-23": [
     "Third Maximum Number"
-  ],
-  "2025-07-22": [
-    "How Many Numbers Are Smaller Than the Current Number"
   ]
 }
