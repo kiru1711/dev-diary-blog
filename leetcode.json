@@ -1,4 +1,9 @@
 {
+  "2025-08-11": [
+    "Harshad Number",
+    "Number Complement",
+    "Happy Number"
+  ],
   "2025-08-09": [
     "Ugly Number"
   ],
@@ -40,13 +45,6 @@
     "Two Sum"
   ],
   "2025-07-25": [
-    "Unique Number of Occurrences",
-    "Find Smallest Letter Greater Than Target"
-  ],
-  "2025-07-24": [
-    "Majority Element"
-  ],
-  "2025-07-23": [
-    "Third Maximum Number"
+    "Unique Number of Occurrences"
   ]
 }
