@@ -1,8 +1,8 @@
-const toggleBtn = document.getElementById('darkModeToggle');
+
 const emojiSpan = document.getElementById('emoji');
 const modeText = document.getElementById('mode-text');
 const body = document.body;
-
+const toggleBtn = document.getElementById('darkModeToggle');
 function setTheme(theme) {
   if (theme === 'dark') {
     body.classList.add('dark');

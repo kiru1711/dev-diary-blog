@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracker</title>
+    <link rel="stylesheet" href="style.css"> <!-- use your existing CSS -->
+</head>
+<body class = "track-page">
+    <!-- Top Navigation Bar -->
+    <div class="top-bar">
+  <div class="left-buttons">
+    <button onclick="location.href='stats.html'" class="stats-btn">LeetCode</button>
+    <button onclick="location.href='track.html'" class="stats-btn">Tracker</button>
+  </div>
+  <div class="right-buttons">
+    <button id="darkModeToggle" class="emoji-toggle-btn">
+      <span id="emoji">🌙</span> 
+      <span id="mode-text">Dark Mode</span>
+    </button>
+  </div>
+</div>
+
+
+    <!-- Page Content -->
+    <main>
+        <div class="tracker-wrapper">
+    <div class="tracker-header">
+        <h1>Progress Tracker</h1>
+        <p>Log your daily coding journey here and watch your progress grow.</p>
+    </div>
+
+    <div class="tracker-body">
+        <h2>Today's Entry</h2>
+        <textarea placeholder="Write your daily log here..."></textarea>
+        <button class="stats-btn">Post</button>
+
+        <h2>Find Entries For:</h2>
+        <div class="entry-buttons">
+            <button class="stats-btn">Yesterday</button>
+            <button class="stats-btn">Last Week</button>
+            <button class="stats-btn">Last Month</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+            
+
+            <!-- Logs Display -->
+            <div id="logsDisplay" class="logs-list">
+                <!-- Entries will appear here dynamically -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="scripts.js"></script> <!-- dark mode + any global JS -->
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "dev-diary-blog",
+  "version": "1.0.0",
+  "description": "Welcome to my developer diary blog!  \r This is where I’ll track my weekly learnings, LeetCode progress, and cool projects.",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiru1711/dev-diary-blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kiru1711/dev-diary-blog/issues"
+  },
+  "homepage": "https://github.com/kiru1711/dev-diary-blog#readme",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0"
+  }
+}
