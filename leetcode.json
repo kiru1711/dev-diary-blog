@@ -1,4 +1,7 @@
 {
+  "2025-08-13": [
+    "Longest Common Prefix"
+  ],
   "2025-08-11": [
     "Harshad Number",
     "Number Complement",
@@ -43,8 +46,5 @@
   ],
   "2025-07-26": [
     "Two Sum"
-  ],
-  "2025-07-25": [
-    "Unique Number of Occurrences"
   ]
 }
