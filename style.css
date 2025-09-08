@@ -779,4 +779,29 @@ body.track-page .tracker-body {
     text-align: left !important;
     margin-left: 5% !important;
 }
+/* Common style */
+.log-entry {
+    padding: 8px;
+    margin: 6px 0;
+    border-radius: 8px;
+    max-width: 80%;
+}
+
+/* Daily logs: light background */
+.daily-log {
+    background: #f0f4ff;
+    color: #333;
+}
+
+/* Chat - user: right aligned */
+.chat-user {
+    background: #d1ffd6;
+    align-self: flex-end;
+}
+
+/* Chat - AI: left aligned */
+.chat-ai {
+    background: #fff0d6;
+    align-self: flex-start;
+}
 

@@ -143,3 +143,68 @@ const res = await fetch('https://raw.githubusercontent.com/kiru1711/dev-diary-bl
 loadLCStats();
 loadRecentLeetCode();
 loadWeeklyChart();
+// -------------------- AI Chat Handler --------------------
+async function sendToAI(userText) {
+  const logsDisplay = document.getElementById("logsDisplay");
+
+  // User message
+  const entry = document.createElement("div");
+  entry.className = "log-entry chat-user";
+  entry.innerHTML = `<strong>You:</strong> ${userText}`;
+  logsDisplay.appendChild(entry);
+
+  // AI placeholder
+  const aiEntry = document.createElement("div");
+  aiEntry.className = "log-entry chat-ai";
+  aiEntry.innerHTML = `<strong>AI:</strong> <span class="aiResponse"></span>`;
+  logsDisplay.appendChild(aiEntry);
+
+  const responseSpan = aiEntry.querySelector(".aiResponse");
+
+  try {
+    const res = await fetch("http://localhost:3000/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt: userText }),
+    });
+
+    if (!res.body) {
+      responseSpan.textContent = "No response body from server.";
+      return;
+    }
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder("utf-8");
+
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      const chunk = decoder.decode(value, { stream: true });
+      if (chunk.includes("[DONE]")) break;
+      responseSpan.textContent += chunk.replace(/^data:\s*/, "");
+    }
+  } catch (err) {
+    console.error(err);
+    responseSpan.textContent = "Error talking to AI.";
+  }
+}
+
+// Daily log post button (#postBtn or #postLogBtn)
+document.getElementById("postBtn").addEventListener("click", () => {
+  const logText = document.getElementById("dailyEntry").value.trim();
+  if (logText) {
+    sendToAI(logText);
+    document.getElementById("dailyEntry").value = "";
+  } else {
+    alert("Please write something before posting!");
+  }
+});
+
+// Chat send button (#chatSend)
+document.getElementById("chatSend").addEventListener("click", () => {
+  const prompt = document.getElementById("chatInput").value.trim();
+  if (prompt) {
+    sendToAI(prompt);
+    document.getElementById("chatInput").value = "";
+  }
+});
