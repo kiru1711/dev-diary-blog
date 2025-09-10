@@ -1,4 +1,8 @@
 {
+  "2025-09-10": [
+    "4Sum",
+    "3Sum"
+  ],
   "2025-08-21": [
     "Maximum 69 Number"
   ],
@@ -44,9 +48,5 @@
   ],
   "2025-07-30": [
     "Single Number"
-  ],
-  "2025-07-29": [
-    "Power of Two",
-    "Power of Three"
   ]
 }
