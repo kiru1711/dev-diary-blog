@@ -1,4 +1,7 @@
 {
+  "2025-09-13": [
+    "Maximum 69 Number"
+  ],
   "2025-09-12": [
     "Number of Subsequences That Satisfy the Given Sum Condition"
   ],
@@ -47,8 +50,5 @@
   ],
   "2025-08-01": [
     "Find Numbers with Even Number of Digits"
-  ],
-  "2025-07-31": [
-    "Valid Anagram"
   ]
 }
