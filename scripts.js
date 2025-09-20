@@ -176,19 +176,29 @@ async function sendToAI(userText) {
     const reader = res.body.getReader();
     const decoder = new TextDecoder("utf-8");
 
+    let buffer = "";
     while (true) {
       const { value, done } = await reader.read();
       if (done) break;
-      const chunk = decoder.decode(value, { stream: true });
-      if (chunk.includes("[DONE]")) break;
-      responseSpan.textContent += chunk.replace(/^data:\s*/, "");
+      buffer += decoder.decode(value, { stream: true });
+
+      // split into SSE messages
+      const parts = buffer.split("\n\n");
+      buffer = parts.pop(); // leftover
+
+      for (const part of parts) {
+        if (part.startsWith("data:")) {
+          const text = part.replace(/^data:\s*/, "");
+          if (text === "[DONE]") return;
+          responseSpan.textContent += text + ' ';
+        }
+      }
     }
   } catch (err) {
     console.error(err);
     responseSpan.textContent = "Error talking to AI.";
   }
 }
-
 // Daily log post button (#postBtn or #postLogBtn)
 document.getElementById("postBtn").addEventListener("click", () => {
   const logText = document.getElementById("dailyEntry").value.trim();

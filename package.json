@@ -19,6 +19,8 @@
   "homepage": "https://github.com/kiru1711/dev-diary-blog#readme",
   "dependencies": {
     "body-parser": "^2.2.0",
-    "express": "^5.1.0"
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "node-fetch": "^2.7.0"
   }
 }

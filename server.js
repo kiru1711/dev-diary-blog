@@ -1,10 +1,16 @@
 const express = require("express");
 const cors = require("cors");
 const fetch = require("node-fetch");
+const path = require("path"); // It's good practice to include path
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// --- ADD THIS LINE ---
+// This serves all static files (HTML, CSS, JS) from the main directory.
+app.use(express.static(__dirname));
+// --------------------
 
 app.post("/chat", async (req, res) => {
   res.setHeader("Content-Type", "text/event-stream");
@@ -53,7 +59,8 @@ app.post("/chat", async (req, res) => {
     });
   } catch (err) {
     console.error("Error communicating with Ollama:", err);
-    res.status(500).send("Error communicating with Ollama");
+    res.write("data: Error talking to Ollama\n\n");
+    res.end();
   }
 });
 

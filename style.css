@@ -800,8 +800,19 @@ body.track-page .tracker-body {
 }
 
 /* Chat - AI: left aligned */
+
+.chat-ai {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+/* Chat - AI: left aligned */
 .chat-ai {
     background: #fff0d6;
     align-self: flex-start;
 }
 
+/* Style for the AI response text itself */
+.chat-ai .aiResponse {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
